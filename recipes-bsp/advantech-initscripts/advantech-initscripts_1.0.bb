@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=3d14358d5cb9cd537bab2028270080b
 DEPENDS += "initscripts"
 
 SRC_URI = "file://vpm-keyevent.sh \
+		   file://bootcount.sh \
            file://README"
 
 inherit update-alternatives
@@ -29,10 +30,12 @@ do_install () {
         install -d ${D}${sysconfdir}/rc6.d
 
 	install -m 0644    ${WORKDIR}/vpm-keyevent.sh	${D}${sysconfdir}/init.d
+	install -m 0644    ${WORKDIR}/bootcount.sh	${D}${sysconfdir}/init.d
 
 #
 # Create runlevel links
 #
 	update-rc.d -r ${D} vpm-keyevent.sh start 99 2 3 4 5 .
+	update-rc.d -r ${D} bootcount.sh start 99 2 3 4 5 .
 }
 
