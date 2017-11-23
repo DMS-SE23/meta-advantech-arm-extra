@@ -8,6 +8,10 @@ CORE_IMAGE_EXTRA_INSTALL += "\
     "
 
 CORE_IMAGE_EXTRA_INSTALL += "\
+    advantech-autobrightness \
+    "
+
+CORE_IMAGE_EXTRA_INSTALL += "\
     advantech-hpattern \
     iperf \
     fbida \

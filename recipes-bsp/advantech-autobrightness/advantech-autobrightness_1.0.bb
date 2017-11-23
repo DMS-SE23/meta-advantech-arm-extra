@@ -1,0 +1,25 @@
+SUMMARY = "Advantech autobrightness"
+DESCRIPTION = "autobrightness provided by advantech for board support package."
+LICENSE = "MIT"
+LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=64c3d2c96e6ad9941bde3924ddfd1416"
+
+SRC_URI = "file://light_range.conf \
+		   file://light_lux200.conf \
+		   file://light_levels.conf \
+		   file://light_controlbl.conf \
+		   file://light_autobl.conf \
+           file://README"
+
+FILES_${PN} = "${sysconfdir}/*"
+
+do_install () {
+#
+# install device conf
+#
+	install -d ${D}${sysconfdir}/
+	install -m 0644    ${WORKDIR}/light_range.conf      ${D}${sysconfdir}/
+	install -m 0644    ${WORKDIR}/light_lux200.conf     ${D}${sysconfdir}/
+	install -m 0644    ${WORKDIR}/light_levels.conf     ${D}${sysconfdir}/
+	install -m 0644    ${WORKDIR}/light_controlbl.conf  ${D}${sysconfdir}/
+	install -m 0644    ${WORKDIR}/light_autobl.conf     ${D}${sysconfdir}/
+}
