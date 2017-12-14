@@ -18,17 +18,5 @@ bootCount()
 	fi
 }
 
-adv_hctosys()
-{
-	#echo "adv_hctosys -- sync every " ${adv_hctosys_sleep_time} " seconds"
-
-	while :
-	do
-		sleep ${adv_hctosys_sleep_time}
-		hwclock -s -u
-	done
-}
-
-
 bootCount
-adv_hctosys&
+
