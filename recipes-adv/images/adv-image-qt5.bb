@@ -18,3 +18,11 @@ CORE_IMAGE_EXTRA_INSTALL += "\
     parted \
     stress \
     "
+CORE_IMAGE_EXTRA_INSTALL += "\
+	xterm \
+	twm \
+	xserver-xorg \
+	xclock \
+	xserver-nodm-init \
+	xsetroot \
+	"
