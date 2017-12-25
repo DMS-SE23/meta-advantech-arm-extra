@@ -9,6 +9,7 @@ CORE_IMAGE_EXTRA_INSTALL += "\
 
 CORE_IMAGE_EXTRA_INSTALL += "\
     advantech-autobrightness \
+    advantech-egalax-fw \
     "
 
 CORE_IMAGE_EXTRA_INSTALL += "\
