@@ -19,16 +19,15 @@ function init_test() {
 	BL_TABLE=$(cat "/proc/adv_input_manager/levels")
 	BL_RANGE=$(cat "/proc/adv_input_manager/threshold_range")
 	echo BL_TABLE:$BL_TABLE
+	sleep 0.2
 	echo "0" > "/proc/adv_input_manager/light_en"
-	echo "100" > "/sys/class/backlight/backlight/brightness"
 	echo "[20,100][5000,150][30000,200]" > "/proc/adv_input_manager/levels"
 	NEW_BL_TABLE=($(cat "/proc/adv_input_manager/levels"))
 	echo NEW_BL_TABLE:$NEW_BL_TABLE
+	sleep 0.2
 	echo "10" > "/proc/adv_input_manager/threshold_range"
 	echo "1" > "/proc/adv_input_manager/control_bl"
-	ping 127.0.0.1 -c 1 > nul
 	echo "1" > "/proc/adv_input_manager/light_en"
-	ping 127.0.0.1 -c 3 > nul
 }
 
 function recover_data() {
@@ -109,7 +108,7 @@ do
 		echo LUX:$LUX
 		BL=($(cat "/sys/class/backlight/backlight/brightness"))
 		echo BL:$BL
-
+		echo "1" > "/proc/adv_input_manager/light_en"
 		if [ "$RESULT" = "0" ]
 		then
 			echo "flashlight near"
@@ -132,7 +131,7 @@ do
 			echo "PASS"
 		fi
 
-	mapping
+		mapping
 
 	else
 		recover_data
