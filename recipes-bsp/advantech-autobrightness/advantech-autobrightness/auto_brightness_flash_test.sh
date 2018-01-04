@@ -72,6 +72,7 @@ do
 			then
 				export SYN_BUG="1"
 				export MAPPING_RES="1"
+				echo "1" > "/proc/adv_input_manager/light_en"
 			elif [ "$SYN_BUG" = "1" ]
 			then
 				export SYN_BUG="0"
@@ -79,9 +80,7 @@ do
 			fi
 		fi
 	fi
-
 	done
-
 
 	if [ "$MAPPING_RES" = "0" ] && [ "$BL" != "255" ]
 	then
@@ -108,7 +107,6 @@ do
 		echo LUX:$LUX
 		BL=($(cat "/sys/class/backlight/backlight/brightness"))
 		echo BL:$BL
-		echo "1" > "/proc/adv_input_manager/light_en"
 		if [ "$RESULT" = "0" ]
 		then
 			echo "flashlight near"
@@ -131,7 +129,6 @@ do
 			echo "PASS"
 		fi
 
-		mapping
 
 	else
 		recover_data
