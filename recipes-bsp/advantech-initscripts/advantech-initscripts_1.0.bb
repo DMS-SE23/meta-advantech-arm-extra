@@ -6,7 +6,9 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=3d14358d5cb9cd537bab2028270080b
 DEPENDS += "initscripts"
 
 SRC_URI = "file://vpm-keyevent.sh \
-		   file://bootcount.sh \
+           file://bootcount.sh \
+           file://battery_monitor.sh \
+           file://battery_service.sh \
            file://README"
 
 inherit update-alternatives
@@ -32,10 +34,14 @@ do_install () {
 	install -m 0644    ${WORKDIR}/vpm-keyevent.sh	${D}${sysconfdir}/init.d
 	install -m 0644    ${WORKDIR}/bootcount.sh	${D}${sysconfdir}/init.d
 
+	install -m 0644    ${WORKDIR}/battery_monitor.sh ${D}${sysconfdir}/
+	install -m 0644    ${WORKDIR}/battery_service.sh ${D}${sysconfdir}/init.d
+
 #
 # Create runlevel links
 #
 	update-rc.d -r ${D} vpm-keyevent.sh start 99 2 3 4 5 .
 	update-rc.d -r ${D} bootcount.sh start 99 2 3 4 5 .
+	update-rc.d -r ${D} battery_service.sh start 99 2 3 4 5 .
 }
 
