@@ -1,3 +1,52 @@
-======================
-egalax
-======================
+
+EETI Linux Command Tool: eGalax Sensor Tester for EX5960
+
+$ sudo ./eSensorTester -h
+Usage:
+	 eSensorTester -p [DevNodePath] [Options]
+	 -v 		 show tool version.
+	 -i 		 set ini file
+
+
+$ sudo ./eSensorTester -v
+Tool version:	v0.36_20170705
+APILIB version:	v1.0.62.0705
+
+
+$ sudo ./eSensorTester
+Open device /dev/egalax_i2c done.
+Controller Info:
+	Type Name:      PCAP31XX Series
+    Model Name:     Sirius_XXXX
+    FW Version:     00
+	Parameter Version:	00.00
+
+File: read - SensorTestDefault.ini
+Read Parameter done.
+Start testing:
+ HW Signal:					Pass
+ Sensor Test1: (Open)		Pass
+ Sensor Test2: (Short)		Pass
+ Sensor Test3: (Mutual)		Pass
+ Create UTable:				Pass
+ 
+ 
+/mnt/hgfs/ShareFolder# ./eUpdate2 -h
+Usage:
+	 eUpdate2 -p [DevNodePath] [Options]
+	 -v 		 show tool version.
+	 -f 		 set firmware path.
+	 -i 		 Tool will search the correct ini file to test automatically. But you can use this parameter to assign the ini file manually.
+	 -t 		 set retry times.
+	 -l		 list the current controller information.
+
+# ./eUpdate2 -v
+Tool version:	v0.29_20170705
+APILIB version:	v1.0.62.0705
+
+Note:
+Tool will search device node path automatically, so need check device node path exist. Or you can use parameter "-p" to assign path manually.
+USB interface: /dev/hidrawX
+I2C interface: /dev/egalax_i2c
+
+/mnt/hgfs/ShareFolder# ./eUpdate2 -f WGJ215187_V1_EXC3188(WGJ)PCAP3188UI_5187_v13_0000_C000_Company_UI_DThqa_20170920.3188UI
