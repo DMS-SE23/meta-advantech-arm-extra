@@ -188,31 +188,74 @@ rootfs(){
 
 validateSourceFile(){
     if [ ! -e ${SOURCE_DIR}/${BOOTLOADER_FILE} ]; then
-        printlog "EMMC-Download]: Bootloader file: "${SOURCE_DIR}/${BOOTLOADER_FILE}" not found!"
+        printlog "[EMMC-Download]: Bootloader file: "${SOURCE_DIR}/${BOOTLOADER_FILE}" not found!"
         return 1
     fi
     
     if [ ! -e ${SOURCE_DIR}/${DTB_FILE} ]; then
-        printlog "EMMC-Download]: DTB file not found!"
+        printlog "[EMMC-Download]: DTB file not found!"
         return 1
     fi
     
     if [ ! -e ${SOURCE_DIR}/${BOOT_FILE} ]; then
-        printlog "EMMC-Download]: Boot file not found!"
+        printlog "[EMMC-Download]: Boot file not found!"
         return 1
     fi
     
     if [ ! -e ${SOURCE_DIR}/${ROOTFS_FILE} ]; then
-        printlog "EMMC-Download: Rootfs file not found!"
+        printlog "[EMMC-Download]: Rootfs file not found!"
         return 1
     fi
     return 0;
+}
+
+checksum(){
+	zImage_check=$(sha256sum "/emmc/zImage" | awk '{print $1}')
+	zImage_sha256=$(cat "/emmc/zImage.sha256sum")
+	if [ "$zImage_check" = "$zImage_sha256" ]; then
+		printlog "[EMMC-Download]:zImage verifying checksum PASS"
+	else
+		printlog "[EMMC-Download]:zImage verifying checksum FAIL, please check SD image"
+		exit;
+	fi
+
+	uboot_check=$(sha256sum "/emmc/u-boot.imx" | awk '{print $1}')
+	uboot_sha256=$(cat "/emmc/u-boot.imx.sha256sum")
+	if [ "$uboot_check" = "$uboot_sha256" ]; then
+		printlog "[EMMC-Download]:u-boot verifying checksum PASS"
+	else
+		printlog "[EMMC-Download]:u-boot verifying checksum FAIL, please check SD image"
+		exit;
+	fi
+
+	dtb_check=$(sha256sum "/emmc/imx6dl-dmsse23.dtb" | awk '{print $1}')
+	dtb_sha256=$(cat "/emmc/imx6dl-dmsse23.dtb.sha256sum")
+	if [ "$dtb_check" = "$dtb_sha256" ]; then
+		printlog "[EMMC-Download]:dtb verifying checksum PASS"
+	else
+		printlog "[EMMC-Download]:dtb verifying checksum FAIL, please check SD image"
+		exit;
+	fi
+
+	# check rootfs spent a lot of time and checksum will change after mount
+#	rootfs_check=$(sha256sum "/emmc/adv-image-qt5-imx6dl-dmsse23.ext4" | awk '{print $1}')
+#	rootfs_sha256=$(cat "/emmc/adv-image-qt5-imx6dl-dmsse23.ext4.sha256sum")
+#	if [ "$rootfs_check" = "$rootfs_sha256" ]; then
+#		printlog "[EMMC-Download]:ext4 verifying checksum PASS"
+#	else
+#		printlog "[EMMC-Download]:ext4 verifying checksum FAIL, please check SD image"
+#		exit;
+#	fi
+	return 0;
 }
 
 main(){
     # Preparing for backup block
     echo "" | tee /dev/tty0
     echo "" | tee /dev/tty0
+
+	checksum
+
     printlog "[EMMC-Download]: Preparing for backup block"
 
     

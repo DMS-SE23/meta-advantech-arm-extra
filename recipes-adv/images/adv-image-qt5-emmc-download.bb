@@ -12,3 +12,5 @@ CORE_IMAGE_EXTRA_INSTALL += " \
 	util-linux \
     "
 DISTRO_FEATURES_remove = " x11 wayland bluetooth"
+
+IMAGE_FSTYPES += "sdcard.sha256sum"

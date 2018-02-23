@@ -6,7 +6,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=3d14358d5cb9cd537bab2028270080b
 DEPENDS += "initscripts"
 
 SRC_URI = "file://emmc-download.sh \
-           file://README"
+			file://README"
 		   
 		   
 		   
@@ -23,9 +23,13 @@ do_install () {
 	install -m 0644    ${DEPLOY_DIR_IMAGE}/u-boot.imx	${D}/emmc/u-boot.imx
 	install -m 0644    ${DEPLOY_DIR_IMAGE}/zImage	${D}/emmc/zImage
 	install -m 0644    ${DEPLOY_DIR_IMAGE}/zImage-imx6dl-dmsse23.dtb	${D}/emmc/imx6dl-dmsse23.dtb
-	install -m 0644    ${DEPLOY_DIR_IMAGE}/adv-image-qt5-imx6dl-dmsse23.ext4	${D}/emmc/adv-image-qt5-imx6dl-dmsse23.ext4	
+	install -m 0644    ${DEPLOY_DIR_IMAGE}/adv-image-qt5-imx6dl-dmsse23.ext4	${D}/emmc/adv-image-qt5-imx6dl-dmsse23.ext4
 
-	
+	sha256sum ${D}/emmc/u-boot.imx | awk '{print $1}' > ${D}/emmc/u-boot.imx.sha256sum
+	sha256sum ${D}/emmc/zImage | awk '{print $1}' > ${D}/emmc/zImage.sha256sum
+	sha256sum ${D}/emmc/imx6dl-dmsse23.dtb | awk '{print $1}' > ${D}/emmc/imx6dl-dmsse23.dtb.sha256sum
+	sha256sum ${D}/emmc/adv-image-qt5-imx6dl-dmsse23.ext4 | awk '{print $1}' > ${D}/emmc/adv-image-qt5-imx6dl-dmsse23.ext4.sha256sum
+
 #
 # Create directories and install device independent scripts
 #
