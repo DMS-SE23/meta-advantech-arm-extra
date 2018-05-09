@@ -20,6 +20,8 @@ CORE_IMAGE_EXTRA_INSTALL += "\
     fbida \
     parted \
     stress \
+    dhcp-server \
+    dhcp-client \
     "
 CORE_IMAGE_EXTRA_INSTALL += "\
 	xterm \

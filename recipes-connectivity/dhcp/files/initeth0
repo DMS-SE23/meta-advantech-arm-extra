@@ -1,0 +1,8 @@
+#!/bin/sh -e
+echo "configuring network interfaces... "
+ifconfig eth0 192.168.1.101 netmask 255.255.255.0 broadcast 192.168.1.255 
+echo "done."
+
+echo "start dhcp... "
+/usr/sbin/dhcpd  -cf /etc/dhcp/dhcpd.conf eth0 -q
+echo "done."
