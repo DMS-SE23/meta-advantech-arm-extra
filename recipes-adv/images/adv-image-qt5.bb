@@ -5,8 +5,6 @@ require recipes-adv/images/adv-image-qt5-validation-imx.bb
 
 CORE_IMAGE_EXTRA_INSTALL += "\
     advantech-initscripts \
-    advtest-burnin \
-    advtest-factory \
     "
 
 CORE_IMAGE_EXTRA_INSTALL += "\
