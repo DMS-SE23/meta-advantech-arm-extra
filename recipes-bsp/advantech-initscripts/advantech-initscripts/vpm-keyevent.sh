@@ -8,7 +8,7 @@
 # Default-Stop:
 ### END INIT INFO
 
-VPM_INIT_MODE="/sys/devices/soc0/soc/2100000.aips-bus/21a0000.i2c/i2c-0/0-0078/vpmintmode"
+VPM_INIT_MODE="/sys/devices/soc0/soc/2100000.aips-bus/21a0000.i2c/i2c-0/0-0068/vpmintmode"
 
 if [ -f "$VPM_INIT_MODE" ]; then
 	echo 1 > "$VPM_INIT_MODE" 
