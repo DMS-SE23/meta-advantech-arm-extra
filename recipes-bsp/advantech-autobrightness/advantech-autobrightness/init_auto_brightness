@@ -1,0 +1,23 @@
+#!/bin/sh -e
+sleep 2
+sync
+lux=`cat "/etc/light_lux200.conf"`
+echo "lux:$lux"
+echo "$lux" > "/proc/adv_input_manager/lux200"
+sync
+range=`cat "/etc/light_range.conf"`
+echo "range:$range"
+echo "$range" > "/proc/adv_input_manager/threshold_range"
+sync
+levels=`cat "/etc/light_levels.conf"`
+echo "levels:$levels"
+echo "$levels" > "/proc/adv_input_manager/levels"
+sync
+controlbl=`cat "/etc/light_controlbl.conf"`
+echo "controlbl:$controlbl"
+echo "$controlbl" > "/proc/adv_input_manager/control_bl"
+sync
+autobl=`cat "/etc/light_autobl.conf"`
+echo "autobl:$autobl"
+echo "$autobl" > "/proc/adv_input_manager/light_en"
+sync
