@@ -28,3 +28,4 @@ install_emmc_download_images() {
 }
 
 DISTRO_FEATURES_remove = " x11 wayland bluetooth"
+IMAGE_OVERHEAD_FACTOR = "1.6"

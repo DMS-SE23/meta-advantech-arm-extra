@@ -29,3 +29,4 @@ CORE_IMAGE_EXTRA_INSTALL += "\
 	xserver-nodm-init \
 	xsetroot \
 	"
+IMAGE_OVERHEAD_FACTOR = "1.6"
