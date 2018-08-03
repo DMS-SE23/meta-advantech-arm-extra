@@ -1,0 +1,71 @@
+From 134097a93bda632f9da120cb42430592d37e404b Mon Sep 17 00:00:00 2001
+From: chris <chris.liu@advantech.com.tw>
+Date: Fri, 3 Aug 2018 16:31:36 +0800
+Subject: [PATCH] [DMS-SE23] Add a dummy before first chunk for touch sound
+ issue
+
+---
+ aplay/aplay.c | 26 ++++++++++++++++++++++++++
+ 1 file changed, 26 insertions(+)
+
+diff --git a/aplay/aplay.c b/aplay/aplay.c
+index 7eacee3..1a91bb7 100755
+--- a/aplay/aplay.c
++++ b/aplay/aplay.c
+@@ -79,6 +79,8 @@
+ #define FORMAT_WAVE		2
+ #define FORMAT_AU		3
+ 
++#define DUMMY_CHUNK		1
++
+ /* global data */
+ 
+ static snd_pcm_sframes_t (*readi_func)(snd_pcm_t *handle, void *buffer, snd_pcm_uframes_t size);
+@@ -145,6 +147,12 @@ static char *pidfile_name = NULL;
+ FILE *pidf = NULL;
+ static int pidfile_written = 0;
+ 
++#ifdef DUMMY_CHUNK
++static int dummy_chunk = 0;
++static int chunk_trans = 0;
++static u_char *data_p = NULL;
++#endif
++
+ #ifdef CONFIG_SUPPORT_CHMAP
+ static snd_pcm_chmap_t *channel_map = NULL; /* chmap to override */
+ static unsigned int *hw_map = NULL; /* chmap to follow */
+@@ -1917,6 +1925,16 @@ static ssize_t pcm_write(u_char *data, size_t count)
+ 	ssize_t r;
+ 	ssize_t result = 0;
+ 
++#ifdef DUMMY_CHUNK
++	if(!dummy_chunk) {
++		data_p = data;
++		count = chunk_size;
++	} else if (!chunk_trans) {
++		data = data_p;
++		chunk_trans = 1;
++	}
++#endif
++
+ 	if (count < chunk_size) {
+ 		snd_pcm_format_set_silence(hwparams.format, data + count * bits_per_frame / 8, (chunk_size - count) * hwparams.channels);
+ 		count = chunk_size;
+@@ -2675,6 +2693,14 @@ static void playback_go(int fd, size_t loaded, off64_t count, int rtype, char *n
+ 			l += r;
+ 		} while ((size_t)l < chunk_bytes);
+ 		l = l * 8 / bits_per_frame;
++
++#ifdef DUMMY_CHUNK
++		if(!dummy_chunk) {
++			pcm_write(audiobuf, l);
++			dummy_chunk = 1;
++		}
++#endif
++
+ 		r = pcm_write(audiobuf, l);
+ 		if (r != l)
+ 			break;
+-- 
+1.9.1
+
