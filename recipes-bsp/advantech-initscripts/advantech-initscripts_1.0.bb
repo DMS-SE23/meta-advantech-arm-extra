@@ -9,6 +9,7 @@ SRC_URI = "file://vpm-keyevent.sh \
            file://bootcount.sh \
            file://battery_monitor.sh \
            file://battery_service.sh \
+		   file://vpm-amp-mute.sh \
            file://README"
 
 inherit update-alternatives
@@ -32,6 +33,7 @@ do_install () {
         install -d ${D}${sysconfdir}/rc6.d
 
 	install -m 0644    ${WORKDIR}/vpm-keyevent.sh	${D}${sysconfdir}/init.d
+	install -m 0644    ${WORKDIR}/vpm-amp-mute.sh	${D}${sysconfdir}/init.d
 	install -m 0644    ${WORKDIR}/bootcount.sh	${D}${sysconfdir}/init.d
 
 	install -m 0644    ${WORKDIR}/battery_monitor.sh ${D}${sysconfdir}/
@@ -41,6 +43,7 @@ do_install () {
 # Create runlevel links
 #
 	update-rc.d -r ${D} vpm-keyevent.sh start 99 2 3 4 5 .
+	update-rc.d -r ${D} vpm-amp-mute.sh start 99 2 3 4 5 .
 	update-rc.d -r ${D} bootcount.sh start 99 2 3 4 5 .
 	update-rc.d -r ${D} battery_service.sh start 99 2 3 4 5 .
 }
