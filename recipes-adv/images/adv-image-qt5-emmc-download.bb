@@ -8,6 +8,7 @@ inherit distro_features_check
 ROOTFS_POSTPROCESS_COMMAND += "install_emmc_download_images"
 CORE_IMAGE_EXTRA_INSTALL += " \
 	advantech-emmc-download \
+	advantech-netboot \
 	e2fsprogs \
 	dosfstools \
 	util-linux \
