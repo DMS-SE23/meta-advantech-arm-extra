@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=system info
+Comment=system info
+Exec=gnome-terminal -e /etc/version.sh
+Icon=preferences-system
+Terminal=true
+Type=Application
+X-MB-SingleInstance=true
+StartupNotify=true

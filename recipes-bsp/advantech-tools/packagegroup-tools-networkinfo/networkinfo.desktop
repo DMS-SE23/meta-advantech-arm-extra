@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=network info
+Comment=network info
+Exec=gnome-terminal -e /etc/networkinfo.sh
+Icon=preferences-system-network
+Terminal=true
+Type=Application
+X-MB-SingleInstance=true
+StartupNotify=true

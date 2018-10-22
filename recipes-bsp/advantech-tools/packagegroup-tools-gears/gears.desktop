@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Gears
+Comment=3D test 
+Exec=gears
+Icon=audio-card
+Terminal=false
+Type=Application
+X-MB-SingleInstance=true
+StartupNotify=true

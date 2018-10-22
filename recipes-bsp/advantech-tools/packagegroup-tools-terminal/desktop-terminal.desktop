@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Terminal
+Comment[zh_CN]=使用命令行
+Comment[zh_HK]=使用命令列
+Comment[zh_TW]=使用命令列
+TryExec=gnome-terminal
+Exec=gnome-terminal
+Icon=utilities-terminal
+Type=Application
+X-GNOME-DocPath=gnome-terminal/index.html
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=gnome-terminal
+X-GNOME-Bugzilla-Component=BugBuddyBugs
+X-GNOME-Bugzilla-Version=2.30.2
+StartupNotify=true
