@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = "file://${WORKDIR}/README;md5=3d14358d5cb9cd537bab2028270080b
 DEPENDS += "u-boot-imx"
 DEPENDS += "initscripts"
 RDEPENDS_${PN} += "bash"
-SRC_URI = "git://github.com/DMS-SE23/uboot-imx.git;protocol=http;user=gituser;branch=DMS-SE23 \
+SRC_URI = "git://github.com/DMS-SE23/uboot-imx.git;protocol=http;branch=DMS-SE23 \
            file://emmcboot.sh \
            file://netboot.sh \
            file://README"

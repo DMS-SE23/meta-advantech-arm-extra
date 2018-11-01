@@ -10,6 +10,7 @@ CORE_IMAGE_EXTRA_INSTALL += "\
     packagegroup-tools-systeminfo \
     packagegroup-tools-networkinfo \
     packagegroup-tools-terminal \
+    u-boot-fw-utils \
     "
 
 CORE_IMAGE_EXTRA_INSTALL += "\
