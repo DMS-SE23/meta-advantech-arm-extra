@@ -9,7 +9,7 @@ SRC_URI = "file://SensorTestDefault.ini \
 		file://egalax_fw_log \
 		file://eUpdate2_ARMhf \
 		file://4000_RawBase.csv \
-		file://PCAP3146I_4000_v00_T4_000000_C000_EDT_Device.3146I \
+		file://PCAP3146I_4000_v00_T4_000000_C000_EDT_Device_E2.3146I \
 		file://README"
 
 S = "${WORKDIR}"
@@ -26,5 +26,5 @@ do_install () {
 	install -m 0755		${WORKDIR}/SensorTestDefault.ini		${D}${sysconfdir}/egalax/
 	install -m 0755		${WORKDIR}/eUpdate2_ARMhf				${D}${sysconfdir}/egalax/
 	install -m 0755		${WORKDIR}/4000_RawBase.csv				${D}${sysconfdir}/egalax/
-	install -m 0755		${WORKDIR}/PCAP3146I_4000_v00_T4_000000_C000_EDT_Device.3146I	${D}${sysconfdir}/egalax/
+	install -m 0755		${WORKDIR}/PCAP3146I_4000_v00_T4_000000_C000_EDT_Device_E2.3146I	${D}${sysconfdir}/egalax/
 }

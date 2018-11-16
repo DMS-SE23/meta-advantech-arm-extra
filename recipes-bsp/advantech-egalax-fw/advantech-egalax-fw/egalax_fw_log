@@ -2,7 +2,7 @@ Open device /dev/egalax_i2c done.
 Controller Info:
 	Type Name:		PCAP3146I Series
 	Model Name:		Sirius_4000
-	FW Version:		00_T3
+	FW Version:		00_T4
 	Parameter Version:	00.00.00
 
 File: read - SensorTestDefault.ini
@@ -12,5 +12,5 @@ Start testing:
  Sensor Test1: (Open)	Pass
  Sensor Test2: (Short)	Pass
  Sensor Test3: (Mutual)	Pass
- Run Raw16 Test:	Pass
+ Run Raw16 Test:	Fail
  Create UTable:		Pass
