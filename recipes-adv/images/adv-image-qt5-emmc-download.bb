@@ -23,6 +23,7 @@ install_emmc_download_images() {
 	install -m 0644 ${DEPLOY_DIR_IMAGE}/adv-image-qt5-imx6dl-dmsse23.ext4	${IMAGE_ROOTFS}/emmc/adv-image-qt5-imx6dl-dmsse23.ext4
 
 	crc32 ${IMAGE_ROOTFS}/emmc/zImage  > ${IMAGE_ROOTFS}/emmc/imageserial
+	crc32 ${IMAGE_ROOTFS}/emmc/imx6dl-dmsse23.dtb  > ${IMAGE_ROOTFS}/emmc/dtbserial
 	sha256sum ${IMAGE_ROOTFS}/emmc/u-boot.imx | awk '{print $1}' > ${IMAGE_ROOTFS}/emmc/u-boot.imx.sha256sum
 	sha256sum ${IMAGE_ROOTFS}/emmc/zImage | awk '{print $1}' > ${IMAGE_ROOTFS}/emmc/zImage.sha256sum
 	sha256sum ${IMAGE_ROOTFS}/emmc/imx6dl-dmsse23.dtb | awk '{print $1}' > ${IMAGE_ROOTFS}/emmc/imx6dl-dmsse23.dtb.sha256sum

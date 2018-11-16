@@ -225,18 +225,36 @@ checksum(){
 		exit;
 	fi
 
-	if [ -f "/emmc/imageserial" ]; then
-		printlog "[EMMC-Download]: zImage crc find"
+	if [ -f "/emmc/dtbserial" ]; then
+		if [ -f "/emmc/imageserial" ]; then
+			printlog "[EMMC-Download]: zImage CRC find"
+		else
+			printlog "[EMMC-Download]: zImage CRC not find"
+		fi
+		crc=`cat /emmc/imageserial`
+	#	printlog "[EMMC-Download]: image crc: $crc"
+		res=$(printf "%d" "0x$crc")
+	#	echo "res: $res"
+		fw_setenv imageserial $res
+	#	fw_printenv
+		printlog "[EMMC-Download]: setting image CRC finish"
 	else
-		printlog "[EMMC-Download]: zImage crc not find"
+		printlog "[EMMC-Download]: image CRC not find, please check SD image"
+		exit;
 	fi
-	crc=`cat /emmc/imageserial`
-	printlog "[EMMC-Download]: setting crc finish"
-#	printlog "[EMMC-Download]: crc: $crc"
-	res=$(printf "%d" "0x$crc")
-#	echo "res: $res"
-	fw_setenv imageserial $res
-#	fw_printenv
+
+	if [ -f "/emmc/dtbserial" ]; then
+		crc=`cat /emmc/dtbserial`
+	#	printlog "[EMMC-Download]: dtb crc: $crc"
+		res=$(printf "%d" "0x$crc")
+	#	echo "res: $res"
+		fw_setenv dtbserial $res
+	#	fw_printenv
+		printlog "[EMMC-Download]: setting dtb CRC finish"
+	else
+		printlog "[EMMC-Download]: dtb CRC not find, please check SD image"
+		exit;
+	fi
 
 	if [ -f "/emmc/u-boot.imx.sha256sum" ]; then
 		printlog "[EMMC-Download]: u-boot.imx sha256sum find"
